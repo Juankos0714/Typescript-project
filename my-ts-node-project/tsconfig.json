@@ -109,7 +109,7 @@
     "outDir": "./dist",
     "rootDir": "./src"
 },
-"include": ["src/**/*.ts"],
+"include": ["src/**/*.ts", "src/index5.ts"],
 "exclude": ["node_modules"]
                                /* Skip type checking all .d.ts files. */
   
