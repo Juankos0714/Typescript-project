@@ -1,0 +1,32 @@
+# Ejercicio
+# 1. Crea una interface Vehicle con propiedades comunes a distintos vehículos como model, year, color, etc. Luego
+# crea interfaces Car y Motorcycle que hereden de Vehicle y tengan propiedades específicas, implemente en una
+# clase.
+# 2. Crea una interface User y otra interfaz Admin que herede de User. Crea una función para imprimir datos de
+# usuario que acepte tanto User como Admin.
+# 3. Crea una interface Product con name, price, etc. Crea una interface Inventory que contenga un array de Product
+# y funciones para agregar y buscar productos.
+# 4. Crea una interface BaseObject con una propiedad id. Luego crea interfaces User, Product y Order que hereden de
+# BaseObject. Crea una función genérica que pueda imprimir los datos.
+# 5. Crea una interface Database con funciones como connect, find, update, etc. Luego crea una clase
+# MySQLDatabase e SQLiteDatabase que implementen esa interface con distintas funcionalidades.
+
+# //taller clases
+# Ejercicio para realizar en TypeScript.
+
+# 1. Crear una clase Persona con propiedades como nombre, edad, documento identidad y métodos como caminar(),
+# hablar(), comer(). Crear algunos objetos Persona e interactuar con sus propiedades y métodos.
+# 2. Crear una clase CuentaBancaria con propiedades como número de cuenta, titular y saldo. Agregar métodos para
+# depositar, retirar y consultar saldo. Crear varias cuentas y probar los métodos.
+# 3. Crear una clase Vehículo con subclases Coche, Barco y Avión. Cada subclase implementa su propio método
+# desplazarse (). Crear objetos de las subclases y probar sus métodos.
+# 4. Crear una clase FiguraGeometrica y subclases Triángulo, Círculo y Cuadrado. Implementar el método area() en
+# cada subclase. Crear objetos y calcular sus áreas.
+# 5. Crear una clase Electrodoméstico con subclases Televisor, Nevera y Lavadora. Cada electrodoméstico tiene
+# propiedades como precio y color. Crear algunos objetos y probar.
+# 6. Crear una clase Hotel con propiedades como nombre y ubicación. Crear clase Habitación con número de
+# habitación, precio y estado. Agregar métodos para reservar y liberar habitación. Probar con algunos hoteles e
+# interacciones.
+# 7. Crear una clase Película con propiedades como título, duración y director. Crear clase CatalogoPeliculas para
+# almacenar películas en una lista. Agregar búsqueda por título y filtrado por director. Probar con un catálogo de
+# películas.
