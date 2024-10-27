@@ -1,5 +1,6 @@
-// 1. Interfaces de Vehículos
-// Primero creamos la interface base Vehicle
+// 1. Crea una interface Vehicle con propiedades comunes a distintos vehículos como model, year, color, etc. Luego
+// crea interfaces Car y Motorcycle que hereden de Vehicle y tengan propiedades específicas, implemente en una
+// clase.
 interface Vehicle {
     model: string;
     year: number;
@@ -9,7 +10,6 @@ interface Vehicle {
     stopEngine(): void;
 }
 
-// Interface Car que hereda de Vehicle
 interface Car extends Vehicle {
     motor: string;
     wheels: number;
@@ -17,14 +17,12 @@ interface Car extends Vehicle {
     honk(): void;
 }
 
-// Interface Motorcycle que hereda de Vehicle
 interface Motorcycle extends Vehicle {
     hasABS: boolean;
     engineSize: number;
     doWheelie(): void;
 }
 
-// Implementación de la clase Car
 class CarImplementation implements Car {
     constructor(
         public model: string,
@@ -48,8 +46,8 @@ class CarImplementation implements Car {
         console.log("Beep! Beep!");
     }
 }
-
-// 2. Interfaces de Usuario y Administrador
+// 2. Crea una interface User y otra interfaz Admin que herede de User. Crea una función para imprimir datos de
+// usuario que acepte tanto User como Admin.
 interface User {
     id: number;
     name: string;
@@ -63,7 +61,6 @@ interface Admin extends User {
     department: string;
 }
 
-// Función para imprimir datos de usuario
 function printUserInfo(user: User) {
     console.log(`
         ID: ${user.id}
@@ -71,8 +68,7 @@ function printUserInfo(user: User) {
         Email: ${user.email}
         Creado: ${user.createdAt}
     `);
-    
-    // Si es admin, mostramos la información adicional
+
     if ('role' in user) {
         const admin = user as Admin;
         console.log(`
@@ -81,8 +77,8 @@ function printUserInfo(user: User) {
         `);
     }
 }
-
-// 3. Interfaces de Producto e Inventario
+// 3. Crea una interface Product con name, price, etc. Crea una interface Inventory que contenga un array de Product
+// y funciones para agregar y buscar productos.
 interface Product {
     name: string;
     price: number;
@@ -98,7 +94,6 @@ interface Inventory {
     updateStock(sku: string, quantity: number): void;
 }
 
-// Implementación de Inventory
 class SimpleInventory implements Inventory {
     products: Product[] = [];
 
@@ -124,8 +119,8 @@ class SimpleInventory implements Inventory {
         }
     }
 }
-
-// 4. Interface Base y objetos heredados
+// 4. Crea una interface BaseObject con una propiedad id. Luego crea interfaces User, Product y Order que hereden de
+// BaseObject. Crea una función genérica que pueda imprimir los datos.
 interface BaseObject {
     id: number;
     createdAt: Date;
@@ -148,7 +143,6 @@ interface OrderWithBase extends BaseObject {
     total: number;
 }
 
-// Función simple para imprimir datos
 function printBaseData(item: BaseObject) {
     console.log(`
         ID: ${item.id}
@@ -156,8 +150,8 @@ function printBaseData(item: BaseObject) {
         Actualizado: ${item.updatedAt}
     `);
 }
-
-// 5. Interface Database y implementaciones básicas
+// 5. Crea una interface Database con funciones como connect, find, update, etc. Luego crea una clase
+// MySQLDatabase e SQLiteDatabase que implementen esa interface con distintas funcionalidades.
 interface Database {
     connect(): void;
     disconnect(): void;
@@ -168,7 +162,6 @@ interface Database {
     insert(data: object): void;
 }
 
-// Implementación simple de MySQL
 class MySQLDatabase implements Database {
     connect(): void {
         console.log("Conectando a MySQL...");
@@ -200,55 +193,90 @@ class MySQLDatabase implements Database {
         console.log("Insertando en MySQL:", data);
     }
 }
-
-// Ejemplos de uso
-// 1. Crear un carro
+// 1. Ejemplo de uso de Car
+console.log("--- Ejemplo de Carro ---");
 const miCarro = new CarImplementation(
-    "Corolla",
+    "Civic",
     2023,
-    "Azul",
-    "Toyota",
-    "2.0L",
+    "rojo",
+    "Honda",
+    "1.5L Turbo",
     4,
     true
 );
 
-miCarro.startEngine();
-miCarro.honk();
-miCarro.stopEngine();
+miCarro.startEngine(); 
+miCarro.honk();       
+miCarro.stopEngine(); 
 
-// 2. Crear y mostrar usuarios
+// 2. Ejemplo de User y Admin
+console.log("\n--- Ejemplo de Usuario y Admin ---");
 const usuario: User = {
     id: 1,
-    name: "Juan",
-    email: "juan@mail.com",
+    name: "Juan Pérez",
+    email: "juan@email.com",
     createdAt: new Date()
 };
 
 const administrador: Admin = {
     id: 2,
-    name: "Ana",
-    email: "ana@mail.com",
+    name: "Ana García",
+    email: "ana@email.com",
     createdAt: new Date(),
-    role: "admin",
-    permissions: ["leer", "escribir"],
+    role: "Super Admin",
+    permissions: ["crear", "editar", "eliminar"],
     department: "IT"
 };
 
-printUserInfo(usuario);
-printUserInfo(administrador);
+printUserInfo(usuario);     
+printUserInfo(administrador); 
 
-// 3. Usar el inventario
+// 3. Ejemplo de Inventario
+console.log("\n--- Ejemplo de Inventario ---");
 const inventario = new SimpleInventory();
-inventario.addProduct({
+
+const producto1: Product = {
     name: "Laptop",
-    price: 1000,
+    price: 999.99,
     sku: "LAP001",
     stock: 5
-});
+};
 
-// 4. Usar la base de datos
-const baseDeDatos = new MySQLDatabase();
-baseDeDatos.connect();
-baseDeDatos.insert({ nombre: "Producto 1" });
-baseDeDatos.disconnect();
+const producto2: Product = {
+    name: "Mouse",
+    price: 29.99,
+    sku: "MOU001",
+    stock: 10
+};
+
+inventario.addProduct(producto1);
+inventario.addProduct(producto2);
+
+const laptopEncontrada = inventario.findProduct("LAP001");
+console.log("Producto encontrado:", laptopEncontrada);
+
+inventario.updateStock("LAP001", 3);
+
+// 4. Ejemplo de objetos con BaseObject
+console.log("\n--- Ejemplo de objetos con BaseObject ---");
+const usuarioBase: UserWithBase = {
+    id: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    name: "María",
+    email: "maria@email.com"
+};
+
+printBaseData(usuarioBase);
+
+// 5. Ejemplo de Database
+console.log("\n--- Ejemplo de Database ---");
+const db = new MySQLDatabase();
+
+db.connect();
+db.insert({ name: "Producto nuevo", price: 99.99 });
+db.find({ category: "electronics" });
+db.findOne(1);
+db.update(1, { price: 89.99 });
+db.delete(1);
+db.disconnect();
